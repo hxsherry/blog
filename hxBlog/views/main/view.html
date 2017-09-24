@@ -1,0 +1,48 @@
+{%extends 'layout.html'%}
+
+{%block content%}
+<div class="listBox">
+    <h3>{{content.title}}</h3>
+    <p>
+        作者：<span class="list">{{content.user.username}}</span>
+        时间：<span class="list">{{content.addTime|date('Y年m月d日 H:i:s',-8*60)}}</span>
+        阅读：<span class="list">{{content.views}}</span>
+        评论：<span class="list">0</span>
+    </p>
+    <dfn>{{content.content}}</dfn>
+</div>
+
+<div class="listBox ">
+    <h3 class="justify">
+        <strong class="textLeft">评论</strong>
+        <span class="textRight">一共有<em id="#">0</em>条评论</span>
+    </h3>
+
+    <p class="text-left">hexian</p>
+    {% if userInfo._id %}
+    <p>
+        <textarea placeholder="请输入评论" name="content" id="commentMessage" cols="75" rows="5" style="resize: none"></textarea><br/>
+        <input type="hidden" id="contentId" value="{{content.id}}">
+        <button class="btn btn-warning">提交</button>
+    </p>
+    {%else%}
+    <p class="bg-primary text-center" style="line-height: 30px">你还没有登录，请先登录！</p>
+    {%endif%}
+    <div class="messageList">
+        <div class="messageBox"><p>还没有留言</p></div>
+    </div>
+    <div class="messageList" style="display: block">
+        <div class="messageBox">
+            <p class="comment">
+                <span>admin</span>
+                <span>2017-9-23</span>
+            </p>
+        </div>
+    </div>
+
+</div>
+
+<script src="/public/js/comment.js"></script>
+
+
+{%endblock content%}

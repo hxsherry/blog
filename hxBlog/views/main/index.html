@@ -1,0 +1,51 @@
+{%extends 'layout.html'%}
+{%block content%}
+
+{% for content in contents %}
+<div class="listBox">
+    <h3>{{content.title}}</h3>
+    <p>
+        作者：<span class="list">{{content.user.username}}</span>
+        时间：<span class="list">{{content.addTime|date('Y年m月d日 H:i:s',-8*60)}}</span>
+        阅读：<span class="list">{{content.views}}</span>
+        评论：<span class="list">0</span>
+    </p>
+    <figure><img src="/public/images/img_1.jpg" alt='图片'></figure>
+    <dfn>{{content.description}}</dfn>
+    <div class="read"><a href="/view?contentId={{content.id}}">阅读全文</a></div>
+
+</div>
+{%endfor%}
+<nav aria-label="page">
+    <ul class="pager">
+        {%if page<=1%}
+        <span>没有上一页了</span>
+        {%else%}
+        <li><a href="/?category={{category}}&page={{page-1}}">上一页</a></li>
+        {%endif%}
+        {%if pages>0%}
+        <li><strong>{{page}}/{{pages}}</strong></li>
+        {%else%}
+        <li>当前分页下没有内容</li>
+        {%endif%}
+        {%if page>=pages%}
+        <span>没有下一页了</span>
+        {%else%}
+        <li><a href="/?category={{category}}&page={{page+1}}">下一页</a></li>
+        {%endif%}
+    </ul>
+</nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+{%endblock content%}
